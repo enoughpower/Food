@@ -10,31 +10,31 @@
 	<string>Food</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>27B135162BD97D95A85E658FDBE7B239069CEBBE</key>
-		<string>https://git.coding.net/enoughpower/food.git</string>
+		<key>B669420462CB72D8A900BFB63CA55BF7D3FA21B4</key>
+		<string>https://github.com/enoughpower/Food.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Food/Food.xcodeproj</string>
+	<string>Food.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>27B135162BD97D95A85E658FDBE7B239069CEBBE</key>
-		<string>../../..</string>
+		<key>B669420462CB72D8A900BFB63CA55BF7D3FA21B4</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://git.coding.net/enoughpower/food.git</string>
+	<string>https://github.com/enoughpower/Food.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>27B135162BD97D95A85E658FDBE7B239069CEBBE</string>
+	<string>B669420462CB72D8A900BFB63CA55BF7D3FA21B4</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>27B135162BD97D95A85E658FDBE7B239069CEBBE</string>
+			<string>B669420462CB72D8A900BFB63CA55BF7D3FA21B4</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Git</string>
+			<string>Food</string>
 		</dict>
 	</array>
 </dict>
