@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="start.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="WwS-Jq-lJ8">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                </imageView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="WwS-Jq-lJ8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7Jf-6t-FPK"/>
+                <constraint firstAttribute="trailing" secondItem="WwS-Jq-lJ8" secondAttribute="trailing" id="Kn2-ev-osT"/>
+                <constraint firstAttribute="bottom" secondItem="WwS-Jq-lJ8" secondAttribute="bottom" id="Lqq-Xi-CAQ"/>
+                <constraint firstItem="WwS-Jq-lJ8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qeQ-cy-cnt"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="548" y="455"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="start.jpg" width="640" height="1136"/>
+    </resources>
+</document>
