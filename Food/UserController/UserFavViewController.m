@@ -13,7 +13,9 @@
 #import <AVOSCloud/AVOSCloud.h>
 #import "CHNotices.h"
 @interface UserFavViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UIAlertViewDelegate>
-
+{
+     int num;
+}
 @property (nonatomic, assign)NSIndexPath *indexPath;
 @property (nonatomic, strong)NSMutableArray *dataArray;
 @property (nonatomic, strong)UICollectionView *collection;
@@ -52,12 +54,18 @@
     {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        num = 3;
+    }else {
+        num = 2;
+    }
     
     self.navigationItem.title = @"我的收藏";
     self.view.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.9];
     self.dataArray = [NSMutableArray array];
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake((self.view.bounds.size.width - 6 ) / 2, (self.view.bounds.size.width ) / 2 *4 / 3);
+    CGFloat width = (self.view.bounds.size.width - 4 - (num - 1)*2) / num;
+    layout.itemSize = CGSizeMake(width,  width*4 / 3);
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.minimumInteritemSpacing = 2;
     layout.minimumLineSpacing = 2;

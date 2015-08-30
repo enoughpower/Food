@@ -1030,6 +1030,7 @@
 				PRODUCT_NAME = "美食界";
 				PROVISIONING_PROFILE = "addeb272-8ee7-46d2-a0d7-327a4c69825e";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1067,6 +1068,7 @@
 				PRODUCT_NAME = "美食界";
 				PROVISIONING_PROFILE = "addeb272-8ee7-46d2-a0d7-327a4c69825e";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

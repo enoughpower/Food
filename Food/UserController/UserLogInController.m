@@ -102,14 +102,24 @@
     NSValue *aValue = [userInfo objectForKey:UIKeyboardFrameEndUserInfoKey];
     CGRect keyboardRect = [aValue CGRectValue];
     int height = keyboardRect.size.height;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+    self.usv.backView.frame = CGRectMake(150, CGRectGetHeight(self.view.frame) - 200 - height, CGRectGetWidth(self.view.frame) - 300, 169);
+    }else {
     self.usv.backView.frame = CGRectMake(20, CGRectGetHeight(self.view.frame) - 200 - height, CGRectGetWidth(self.view.frame) - 40, 169);
+    }
+
     
 }
 
 //当键退出时调用
 - (void)keyboardWillHide:(NSNotification *)aNotification
 {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+    self.usv.backView.frame = CGRectMake(150, CGRectGetHeight(self.view.frame) - 200, CGRectGetWidth(self.view.frame) - 300, 169);
+    }else {
     self.usv.backView.frame = CGRectMake(20, CGRectGetHeight(self.view.frame) - 200, CGRectGetWidth(self.view.frame) - 40, 169);
+    }
+
 }
 
 @end

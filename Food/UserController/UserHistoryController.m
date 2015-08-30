@@ -88,16 +88,25 @@
     DetailMessage *m = _history[indexPath.row];
     [cell.classifyImage sd_setImageWithURL:[NSURL URLWithString:m.cover] placeholderImage:[UIImage imageNamed:@"picholder"]];
     cell.titleLabel.text = m.title;
-    cell.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:18.f];
-    cell.detailLabel.font = [UIFont systemFontOfSize:15.f];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        cell.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:25.f];
+        cell.detailLabel.font = [UIFont systemFontOfSize:20.f];
+    }else {
+        cell.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:18.f];
+        cell.detailLabel.font = [UIFont systemFontOfSize:13.f];
+    }
     cell.detailLabel.alpha = 0.7;
-    cell.detailLabel.text = m.message;
+    cell.detailLabel.text = [self handleStringWithString:m.message];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        return 150;
+    }else {
+        return 90;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -111,7 +120,30 @@
     
     
 }
-
+-(NSString *)handleStringWithString:(NSString *)str{
+    if (str != nil) {
+        NSMutableString * muStr = [NSMutableString stringWithString:str];
+        while (1) {
+            NSRange range = [muStr rangeOfString:@"<"];
+            NSRange range1 = [muStr rangeOfString:@">"];
+            if (range.location != NSNotFound) {
+                NSInteger loc = range.location;
+                NSInteger len = range1.location - range.location;
+                [muStr deleteCharactersInRange:NSMakeRange(loc, len + 1)];
+                
+            }else{
+                break;
+            }
+        }
+        //return muStr;
+        // 去除字符串里面的 “&nbsp;”
+        return [muStr stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
+    }else{
+        NSMutableString * muStr = [NSMutableString string];
+        //return muStr;
+        return [muStr stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.

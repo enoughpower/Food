@@ -23,6 +23,7 @@
 @interface CollectionViewController ()<SDCycleScrollViewDelegate ,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 {
     int i;
+    int num;
 }
 @property (nonatomic, strong)UICollectionView *collection;
 @property (nonatomic, strong)NSMutableArray *imgArray;
@@ -39,7 +40,13 @@
     {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        num = 3;
+    }else {
+        num = 2;
+    }
     i = 1;
+    
     [self p_setupView];
     Reachability *reach = [Reachability reachabilityForInternetConnection];
     [reach startNotifier];
@@ -64,11 +71,13 @@
 
 - (void)p_setupView
 {
+    
 
 
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.itemSize = CGSizeMake((self.view.bounds.size.width - 6 ) / 2, (self.view.bounds.size.width ) / 2 *4 / 3);
-    layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, 235);
+    CGFloat width = (self.view.bounds.size.width - 4 - (num - 1)*2) / num;
+    layout.itemSize = CGSizeMake(width,  width*4 / 3);
+    layout.headerReferenceSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.width /16*9);
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     layout.minimumInteritemSpacing = 2;
     layout.minimumLineSpacing = 2;
@@ -116,7 +125,7 @@
             [images addObject:m.ccover];
             [titles addObject:m.title];
         }
-        SDCycleScrollView *cycle = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 200) imageURLStringsGroup:images];
+        SDCycleScrollView *cycle = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width /16*9 - 35) imageURLStringsGroup:images];
         cycle.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
         cycle.delegate = self;
         cycle.titlesGroup = titles;
@@ -127,7 +136,7 @@
 
 
         // 加载标题
-        UILabel *textlabel = [[UILabel alloc]initWithFrame:CGRectMake(5,200, self.view.bounds.size.width - 10, 35)];
+        UILabel *textlabel = [[UILabel alloc]initWithFrame:CGRectMake(5,CGRectGetMaxY(cycle.frame), self.view.bounds.size.width - 10, 35)];
         textlabel.text = @"菜谱排行";
         textlabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
         textlabel.textColor = [UIColor blackColor];
@@ -161,7 +170,7 @@
 {
     Reachability *ability = [Reachability reachabilityForInternetConnection];
     if (ability.currentReachabilityStatus == ReachableViaWiFi || ability.currentReachabilityStatus == ReachableViaWWAN) {
-        self.collection.footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        self.collection.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             DLog(@"上拉加载");
             //   [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(haha) userInfo:nil repeats:NO];
             [self p_makeData];

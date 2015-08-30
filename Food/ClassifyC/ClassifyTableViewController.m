@@ -74,7 +74,7 @@
 {
     Reachability *ability = [Reachability reachabilityForInternetConnection];
     if (ability.currentReachabilityStatus == ReachableViaWiFi || ability.currentReachabilityStatus == ReachableViaWWAN) {
-    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     }
 }
@@ -229,12 +229,17 @@
     
     ClassifyModel *model = _dataArray[indexPath.row];
     // 将请求下来的数据赋值给cell
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        cell.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:25.f];
+        cell.detailLabel.font = [UIFont systemFontOfSize:20.f];
+    }else {
+        cell.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:18.f];
+        cell.detailLabel.font = [UIFont systemFontOfSize:13.f];
+    }
     // 菜名
     cell.titleLabel.text = model.title;
-    cell.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:18.f];
     // 介绍
     cell.detailLabel.text = model.message;
-    cell.detailLabel.font = [UIFont systemFontOfSize:13.f];
     cell.detailLabel.alpha = 0.7;
     [cell.classifyImage sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:[UIImage imageNamed:@"picholder"] ];
     return cell;
@@ -242,7 +247,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        return 150;
+    }else {
+        return 90;
+    }
+    
 }
 
 #pragma mark -- 测试 需要完善的

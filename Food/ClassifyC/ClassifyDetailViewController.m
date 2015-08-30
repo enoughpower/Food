@@ -16,6 +16,9 @@
 #import "DetailViewController.h"
 #define Kurl @"http://api.2meiwei.com/v1/collect/"
 @interface ClassifyDetailViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+{
+    int num;
+}
 @property (nonatomic, strong)UICollectionView *collection;
 @property(nonatomic,strong)NSMutableArray *dataArray;
 @property(nonatomic,assign)NSInteger idx;
@@ -26,7 +29,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        num = 3;
+    }else {
+        num = 2;
+    }
     _idx = 2;
     [self p_setupLayout];
     [self p_reachNetwork];
@@ -53,7 +60,7 @@
 // 上拉加载
 - (void)p_footerRefresh
 {
-    self.collection.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreDate)];
+    self.collection.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreDate)];
 }
 // 上拉加载方法
 - (void)loadMoreDate
@@ -122,7 +129,8 @@
 {
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake((self.view.bounds.size.width - 6) / 2, (self.view.bounds.size.width - 6) / 2 + 90);
+    CGFloat width = (self.view.bounds.size.width - 4 - (num - 1)*2) / num;
+    layout.itemSize = CGSizeMake(width , width*4 / 3);
     layout.minimumLineSpacing = 2;
     layout.minimumInteritemSpacing = 2;
     layout.sectionInset = UIEdgeInsetsMake(0, 2, 2, 2);

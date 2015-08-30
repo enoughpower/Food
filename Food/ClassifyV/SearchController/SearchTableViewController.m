@@ -66,7 +66,7 @@
     [self.tableView.header beginRefreshing];
     
     // 上拉刷新
-    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     
     // 设置底部inset
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
@@ -167,15 +167,17 @@
         SearchMessage *m = _dataArray[indexPath.row];
         //cell.accessoryType = UITableViewCellSeparatorStyleSingleLine;
         cell.titleLabel.text = m.title;
-        cell.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:18.f];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+            cell.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:25.f];
+            cell.detailLabel.font = [UIFont systemFontOfSize:20.f];
+        }else {
+            cell.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:18.f];
+            cell.detailLabel.font = [UIFont systemFontOfSize:13.f];
+        }
         // 介绍
-        cell.detailLabel.text = m.message;
-        cell.detailLabel.font = [UIFont systemFontOfSize:15.f];
+        cell.detailLabel.text = [self handleStringWithString:m.message];
         cell.detailLabel.alpha = 0.7;
-
        self.tableView.separatorStyle  =UITableViewCellSeparatorStyleSingleLine;
-     
-        [cell.classifyImage sd_setImageWithURL:[NSURL URLWithString:m.cover]];
         [cell.classifyImage sd_setImageWithURL:[NSURL URLWithString:m.cover] placeholderImage:[UIImage imageNamed:@"picholder"]];
     }
 
@@ -184,7 +186,11 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        return 150;
+    }else {
+        return 90;
+    }
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -202,6 +208,33 @@
     
     
 }
+
+-(NSString *)handleStringWithString:(NSString *)str{
+    if (str != nil) {
+        NSMutableString * muStr = [NSMutableString stringWithString:str];
+        while (1) {
+            NSRange range = [muStr rangeOfString:@"<"];
+            NSRange range1 = [muStr rangeOfString:@">"];
+            if (range.location != NSNotFound) {
+                NSInteger loc = range.location;
+                NSInteger len = range1.location - range.location;
+                [muStr deleteCharactersInRange:NSMakeRange(loc, len + 1)];
+                
+            }else{
+                break;
+            }
+        }
+        //return muStr;
+        // 去除字符串里面的 “&nbsp;”
+        return [muStr stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
+    }else{
+        NSMutableString * muStr = [NSMutableString string];
+        //return muStr;
+        return [muStr stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
+    }
+}
+
+
 
 // ================ 我是分割线 =============================
 

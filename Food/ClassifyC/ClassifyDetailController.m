@@ -60,7 +60,7 @@
 // 上拉加载
 - (void)p_footerRefresh
 {
-    self.tableView.footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreDate)];
+    self.tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreDate)];
 }
 // 上拉加载方法
 - (void)loadMoreDate
@@ -146,11 +146,16 @@
     // 照片
     [cell.classifyImage sd_setImageWithURL:[NSURL URLWithString:model.cover] placeholderImage:[UIImage imageNamed:@"picholder"] ];
     // 菜名
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        cell.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:25.f];
+        cell.detailLabel.font = [UIFont systemFontOfSize:20.f];
+    }else {
+        cell.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:18.f];
+        cell.detailLabel.font = [UIFont systemFontOfSize:13.f];
+    }
     cell.titleLabel.text = model.title;
-    cell.titleLabel.font = [UIFont fontWithName:@"ArialRoundedMTBold" size:18.f];
     // 介绍
     cell.detailLabel.text = model.message;
-    cell.detailLabel.font = [UIFont systemFontOfSize:15.f];
     cell.detailLabel.alpha = 0.7;
     return cell;
 }
@@ -172,7 +177,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        return 150;
+    }else {
+        return 90;
+    }
 }
 /*
 // Override to support conditional editing of the table view.

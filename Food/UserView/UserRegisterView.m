@@ -27,7 +27,11 @@
     [self addSubview:backImage];
     
     self.backView = [[UIView alloc]init];
-    _backView.frame = CGRectMake(20, 100, CGRectGetWidth(self.frame) - 40, 330);
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+        _backView.frame = CGRectMake(150, 100, CGRectGetWidth(self.frame) - 300, 330);
+    }else {
+        _backView.frame = CGRectMake(20, 100, CGRectGetWidth(self.frame) - 40, 330);
+    }
     _backView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:0.8];
     _backView.layer.masksToBounds = YES;
     _backView.layer.cornerRadius = 5;
