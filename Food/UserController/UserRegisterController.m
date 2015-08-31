@@ -59,19 +59,17 @@
     }else if ([self.urv.userPassWordText.text length] < 6) {
         [CHNotices noticesWithTitle:@"密码少于6位" Time:1 View:self.view Style:CHNoticesStyleFail];
         DLog(@"密码少于6位");
-    }else if( ([self.urv.userPhoneNumberText.text length] != 11) && (![self.urv.userPhoneNumberText.text isEqualToString:@""])){
+    }else if([self.urv.userPhoneNumberText.text length] != 11){
         [CHNotices noticesWithTitle:@"手机号码不足11位" Time:1 View:self.view Style:CHNoticesStyleFail];
         DLog(@"手机号码不足11位");
     }
-    else{
+    else if (![self isValidateEmail:self.urv.userEmailText.text]) {
+        [CHNotices noticesWithTitle:@"邮箱格式不正确" Time:1 View:self.view Style:CHNoticesStyleFail];
+    } else {
         user.username = self.urv.userNameText.text;
         user.password = self.urv.userPassWordText.text;
-        if (![self.urv.userEmailText.text isEqualToString:@""]) {
-            user.email = self.urv.userEmailText.text;
-        }
-        if (![self.urv.userPhoneNumberText.text isEqualToString:@""]) {
-            user.mobilePhoneNumber = self.urv.userPhoneNumberText.text;
-        }
+        user.email = self.urv.userEmailText.text;
+        user.mobilePhoneNumber = self.urv.userPhoneNumberText.text;
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (error == nil) {
                 [CHNotices noticesWithTitle:@"注册成功" Time:1 View:self.view Style:CHNoticesStyleSuccess];
@@ -82,6 +80,14 @@
         }];
     }
 }
+
+// 邮箱格式正则表达式验证
+-(BOOL)isValidateEmail:(NSString *)email {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:email];
+}
+
 - (void)cancelButtonAction:(UIButton *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -95,14 +101,20 @@
 
 - (void)userError:(NSError *)error
 {
-    NSString *errorStr = error.localizedDescription;
-    if ([errorStr isEqualToString:@"Username has already been taken"]) {
-        [CHNotices noticesWithTitle:@"用户名已被注册" Time:1 View:self.view Style:CHNoticesStyleFail];
-    }else{
-        [CHNotices noticesWithTitle:@"注册失败" Time:1 View:self.view Style:CHNoticesStyleFail];
-        DLog(@"注册失败");
-        DLog(@"%@", errorStr);
+    if (error.code == 202) {
+        [CHNotices noticesWithTitle:@"该用户名已被注册" Time:1 View:self.view Style:CHNoticesStyleFail];
+    }else if (error.code == 203) {
+        [CHNotices noticesWithTitle:@"邮箱已经被占用" Time:1 View:self.view Style:CHNoticesStyleFail];
+    }else if (error.code == 214) {
+        [CHNotices noticesWithTitle:@"手机号已经被占用" Time:1 View:self.view Style:CHNoticesStyleFail];
+    }else if (error.code == 127) {
+        [CHNotices noticesWithTitle:@"手机号码无效" Time:1 View:self.view Style:CHNoticesStyleFail];
     }
+    else if (error.code == -1009)
+        [CHNotices noticesWithTitle:@"网络不给力" Time:1 View:self.view Style:CHNoticesStyleFail];
+        DLog(@"注册失败");
+        DLog(@"%ld  %@", error.code, error.localizedDescription);
+
 
 }
 

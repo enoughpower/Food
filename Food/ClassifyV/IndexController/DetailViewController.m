@@ -223,7 +223,7 @@
 
     NSString *url = [NSString stringWithFormat:@"%@%@/", urlstr, self.ID];
     //DLog(@"%@", url);
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"favorite"] style:(UIBarButtonItemStyleBordered) target:self action:@selector(favAction:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"favorite"] style:(UIBarButtonItemStyleDone) target:self action:@selector(favAction:)];
     [requestTool requestWithUrl:url body:nil backValue:^(NSData *value) {
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:value options:(NSJSONReadingAllowFragments) error:nil];
         self.message = [[DetailMessage alloc]init];

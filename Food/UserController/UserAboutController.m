@@ -7,7 +7,7 @@
 //
 
 #import "UserAboutController.h"
-#define VERSION @"V1.0"
+#define VERSION @"V1.1"
 #define EMAIL @"baidudc@126.com"
 @interface UserAboutController ()
 

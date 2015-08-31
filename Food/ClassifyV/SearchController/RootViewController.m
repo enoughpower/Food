@@ -14,6 +14,7 @@
 @property(nonatomic,strong)NSMutableArray *dataArray;
 @property(nonatomic,strong)NSString *urlStr;
 @property (nonatomic,strong)UISearchBar *searchBar;
+@property (nonatomic, assign)BOOL hasItem;
 
 @end
 
@@ -24,6 +25,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
 
+    _hasItem = NO;
     [self p_openFile];
 }
 
@@ -94,16 +96,24 @@
 // 储存搜索关键字
 - (void)p_storeWord
 {
+    
+    for (NSString *searchStr in _dataArray) {
+        if ([searchStr isEqualToString:self.searchBar.text]) {
+            _hasItem = YES;
+        }
+    }
+    if (!_hasItem) {
+        [self.dataArray addObject:self.searchBar.text];
+        //DLog(@"%@", _dataArray);
+        // 获取文件路径
+        NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+        NSString *historyPath = [documentPath stringByAppendingPathComponent:@"searchHistory.plist"];
+        // 写入文件
+        [_dataArray writeToFile:historyPath atomically:YES];
+        //DLog(@"%@", historyPath);
+        [self.history reloadData];
+    }
 
-    [self.dataArray addObject:self.searchBar.text];
-    //DLog(@"%@", _dataArray);
-    // 获取文件路径
-    NSString *documentPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-    NSString *historyPath = [documentPath stringByAppendingPathComponent:@"searchHistory.plist"];
-    // 写入文件
-    [_dataArray writeToFile:historyPath atomically:YES];
-    //DLog(@"%@", historyPath);
-    [self.history reloadData];
     
 
 }

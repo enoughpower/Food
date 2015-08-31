@@ -28,9 +28,9 @@
     
     self.backView = [[UIView alloc]init];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
-        _backView.frame = CGRectMake(150, CGRectGetHeight(self.frame) - 200, CGRectGetWidth(self.frame) - 300, 169);
+        _backView.frame = CGRectMake(150, CGRectGetHeight(self.frame) - 190, CGRectGetWidth(self.frame) - 300, 179);
     }else {
-        _backView.frame = CGRectMake(20, CGRectGetHeight(self.frame) - 200, CGRectGetWidth(self.frame) - 40, 169);
+        _backView.frame = CGRectMake(20, CGRectGetHeight(self.frame) - 190, CGRectGetWidth(self.frame) - 40, 179);
     }
     _backView.backgroundColor = [UIColor colorWithWhite:0.95 alpha:0.8];
     _backView.layer.masksToBounds = YES;
@@ -71,8 +71,13 @@
     line1.backgroundColor = [UIColor grayColor];
     [_backView addSubview:line1];
     
+    self.findPasswordButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
+    _findPasswordButton.frame = CGRectMake(CGRectGetMaxX(line1.frame) - 80, CGRectGetMaxY(line1.frame) + 5, 80, 20);
+    [_findPasswordButton setTitle:@"忘记密码？" forState:(UIControlStateNormal)];
+    [_backView addSubview:_findPasswordButton];
+    
     self.logInButton = [UIButton buttonWithType:(UIButtonTypeSystem)];
-    _logInButton.frame = CGRectMake(CGRectGetMinX(_userPassWordImage.frame), CGRectGetMaxY(line1.frame) + 14, CGRectGetWidth(_backView.frame) - 20, 50);
+    _logInButton.frame = CGRectMake(CGRectGetMinX(_userPassWordImage.frame), CGRectGetMaxY(_findPasswordButton.frame) + 5, CGRectGetWidth(_backView.frame) - 20, 50);
     _logInButton.backgroundColor = [UIColor colorWithRed:255/255.0 green:100/255.0 blue:78/255.0 alpha:1];
     [_logInButton setTitle:@"登录" forState:(UIControlStateNormal)];
     [_logInButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];

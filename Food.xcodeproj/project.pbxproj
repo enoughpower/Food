@@ -1006,8 +1006,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Muyang Yu (D6JP68T554)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Muyang Yu (D6JP68T554)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Muyang Yu (G7D3K6VQ6W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Muyang Yu (G7D3K6VQ6W)";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1028,7 +1028,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "美食界";
-				PROVISIONING_PROFILE = "addeb272-8ee7-46d2-a0d7-327a4c69825e";
+				PROVISIONING_PROFILE = "38aaf8b1-ed53-410c-9da1-eafca354071b";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1051,8 +1051,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Muyang Yu (D6JP68T554)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Muyang Yu (D6JP68T554)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Muyang Yu (G7D3K6VQ6W)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Muyang Yu (G7D3K6VQ6W)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1066,7 +1066,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "美食界";
-				PROVISIONING_PROFILE = "addeb272-8ee7-46d2-a0d7-327a4c69825e";
+				PROVISIONING_PROFILE = "38aaf8b1-ed53-410c-9da1-eafca354071b";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1078,7 +1078,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Muyang Yu (D6JP68T554)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Muyang Yu (G7D3K6VQ6W)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1091,7 +1091,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "addeb272-8ee7-46d2-a0d7-327a4c69825e";
+				PROVISIONING_PROFILE = "38aaf8b1-ed53-410c-9da1-eafca354071b";
 			};
 			name = Debug;
 		};
@@ -1100,7 +1100,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Muyang Yu (D6JP68T554)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Muyang Yu (G7D3K6VQ6W)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1113,7 +1113,7 @@
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "addeb272-8ee7-46d2-a0d7-327a4c69825e";
+				PROVISIONING_PROFILE = "38aaf8b1-ed53-410c-9da1-eafca354071b";
 			};
 			name = Release;
 		};

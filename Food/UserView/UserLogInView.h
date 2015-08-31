@@ -15,4 +15,5 @@
 @property (nonatomic, strong)UIImageView *userPassWordImage;
 @property (nonatomic, strong)UITextField *userPassWordText;
 @property (nonatomic, strong)UIButton *logInButton;
+@property (nonatomic, strong)UIButton *findPasswordButton;
 @end
